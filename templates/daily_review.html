@@ -1,0 +1,150 @@
+<div class="row">
+    <div class="col alert alert-info">
+        Daily Review
+        <button type="button" class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#daily_review_modal">+</button>
+    </div>
+</div>
+
+<div class="row">
+    <table class="table table-sm text-center">
+        <thead>
+            <tr>
+                <th></th>
+                <th class="text-center">Daily Planning</th>
+                <th class="text-center">Personal Dev</th>
+                <th class="text-center">Tix</th>
+                <th class="text-center">Cleanup</th>
+                <th class="text-center">Daily Task Review</th>
+                <th class="text-center">Weekly Task Review</th>
+            </tr>
+        </thead>
+        <tbody>
+                <tr>
+                    <td class="text-right">Mon</td>
+                    {% for r in review %}
+                        {% if (r.review_day - week.week).days == 1 %}
+                            <td>{{ 'Y' if r.planning else '' }}</td>
+                            <td>{{ 'Y' if r.dev else '' }}</td>
+                            <td>{{ 'Y' if r.tickets else '' }}</td>
+                            <td>{{ 'Y' if r.cleanup else '' }}</td>
+                            <td>{{ 'Y' if r.review else '' }}</td>
+                            <td>{{ 'Y' if r.goals else '' }}</td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td class="text-right">Tue</td>
+                    {% for r in review %}
+                        {% if (r.review_day - week.week).days == 2 %}
+                            <td>{{ 'Y' if r.planning else '' }}</td>
+                            <td>{{ 'Y' if r.dev else '' }}</td>
+                            <td>{{ 'Y' if r.tickets else '' }}</td>
+                            <td>{{ 'Y' if r.cleanup else '' }}</td>
+                            <td>{{ 'Y' if r.review else '' }}</td>
+                            <td>{{ 'Y' if r.goals else '' }}</td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td class="text-right">Wed</td>
+                    {% for r in review %}
+                        {% if (r.review_day - week.week).days == 3 %}
+                            <td>{{ 'Y' if r.planning else '' }}</td>
+                            <td>{{ 'Y' if r.dev else '' }}</td>
+                            <td>{{ 'Y' if r.tickets else '' }}</td>
+                            <td>{{ 'Y' if r.cleanup else '' }}</td>
+                            <td>{{ 'Y' if r.review else '' }}</td>
+                            <td>{{ 'Y' if r.goals else '' }}</td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td class="text-right">Thu</td>
+                    {% for r in review %}
+                        {% if (r.review_day - week.week).days == 4 %}
+                            <td>{{ 'Y' if r.planning else '' }}</td>
+                            <td>{{ 'Y' if r.dev else '' }}</td>
+                            <td>{{ 'Y' if r.tickets else '' }}</td>
+                            <td>{{ 'Y' if r.cleanup else '' }}</td>
+                            <td>{{ 'Y' if r.review else '' }}</td>
+                            <td>{{ 'Y' if r.goals else '' }}</td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td class="text-right">Fri</td>
+                    {% for r in review %}
+                        {% if (r.review_day - week.week).days == 5 %}
+                            <td>{{ 'Y' if r.planning else '' }}</td>
+                            <td>{{ 'Y' if r.dev else '' }}</td>
+                            <td>{{ 'Y' if r.tickets else '' }}</td>
+                            <td>{{ 'Y' if r.cleanup else '' }}</td>
+                            <td>{{ 'Y' if r.review else '' }}</td>
+                            <td>{{ 'Y' if r.goals else '' }}</td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="daily_review_modal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="{{ url_for('add_review', week_id=week.id ) }}" method="post" name="goals">
+                <div class="modal-header">
+                    <h6 class="modal-title">Daily Review</h6>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                        {{ review_form.hidden_tag() }}
+                        <p>{{ review_form.date(class_="form-control") }}</p>
+
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                {{ review_form.planning(class_="form-check-input") }}
+                                {{ review_form.planning.label }}
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                {{ review_form.dev(class_="form-check-input") }}
+                                {{ review_form.dev.label }}
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                {{ review_form.tickets(class_="form-check-input") }}
+                                {{ review_form.tickets.label }}
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                {{ review_form.cleanup(class_="form-check-input") }}
+                                {{ review_form.cleanup.label }}
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                {{ review_form.review(class_="form-check-input") }}
+                                {{ review_form.review.label }}
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                {{ review_form.goals(class_="form-check-input") }}
+                                {{ review_form.goals.label }}
+                            </label>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Add</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

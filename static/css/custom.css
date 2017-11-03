@@ -1,0 +1,29 @@
+@media (min-width: 768px)
+custom.css:36
+.container {
+     max-width: 1000px; 
+}
+
+
+body {
+    font-size: .8rem;
+    line-height: 1.25;
+}
+
+
+.text_rotate {
+    /* Safari */
+    -webkit-transform: rotate(90deg);
+
+    /* Firefox */
+    -moz-transform: rotate(90deg);
+
+    /* IE */
+    -ms-transform: rotate(90deg);
+
+    /* Opera */
+    -o-transform: rotate(90deg);
+
+    /* Internet Explorer */
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}

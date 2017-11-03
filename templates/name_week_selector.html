@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="col">
+        Name: Erik Shagdar
+    </div>
+    <div class="col">
+        <div class="dropdown">
+        Week Beginning: 
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% if week %}{{ week.get_week_date() }}{% else %}Select a week{% endif %}</button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            {% for week in week_list %}
+                <a class="dropdown-item" href="{{ url_for('worksheet', week_id=week.id) }}">{{ week.week.date() }}</a>
+            {% endfor %}
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{{ url_for('week_new') }}">+ New Week</a>
+          </div>
+        </div>
+    </div>
+</div>

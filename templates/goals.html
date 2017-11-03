@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col alert alert-info">
+        Weekly Goals
+        <button type="button" class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#weekly_goal_modal">+</button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-8"><strong>Goal</strong></div>
+    <div class="col"><strong>Pri</strong></div>
+    <div class="col"><strong>%</strong></div>
+    <div class="col"><strong>C/F</strong></div>
+</div>
+
+{% for goal in goals %}
+    <div class="row">
+        <div class="col-8"><p>{{ goal.goal }}</p></div>
+        <div class="col"><p>{{ goal.priority|default("", True) }}</p></div>
+        <div class="col"><p>{{ goal.pct_done|default("", True) }}</p></div>
+        <div class="col"><p>{{ goal.weeks_pushed|default("", True) }}</p></div>
+        <div class="w-100"></div>
+    </div>
+{% endfor %}
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="weekly_goal_modal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="{{ url_for('add_goal', week_id=week.id ) }}" method="post" name="goals">
+                <div class="modal-header">
+                    <h6 class="modal-title">Weekly Goals</h6>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                        {{ goal_form.hidden_tag() }}
+                        <p>{{ goal_form.goal(class_="form-control") }}</p>
+                        <p>{{ goal_form.priority(class_="form-control") }}</p>
+                        <p>{{ goal_form.pct_done(class_="form-control") }}</p>
+                        <p>{{ goal_form.weeks_pushed(class_="form-control") }}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Add</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

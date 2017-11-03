@@ -1,0 +1,69 @@
+<div class="row">
+    <div class="col alert alert-info">
+        Weekly Task Review
+        <button type="button" class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#weekly_review_modal">+</button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-3"><strong>Things worked on / achieved</strong></div>
+    <div class="col-9"><strong>Notes</strong></div>
+</div>
+
+<div class="row">
+    <div class="col-3">Research / Development</div>
+    <div class="col-9">
+        {% for task in tasks %}
+            {% if task.review_dev %}
+            <p>{{ task.review_dev }}</p>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-3">Projects / Tasks</div>
+    <div class="col-9">
+        {% for task in tasks %}
+            {% if task.review_task %}
+            <p>{{ task.review_task }}</p>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-3">Cleanup / Documentation</div>
+    <div class="col-9">
+        {% for task in tasks %}
+            {% if task.review_doc %}
+            <p>{{ task.review_doc }}</p>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="weekly_review_modal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="{{ url_for('add_task', week_id=week.id ) }}" method="post" name="review">
+                <div class="modal-header">
+                    <h6 class="modal-title">Add Weekly Review</h6>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                        {{ task_form.hidden_tag() }}
+                        <p>{{ task_form.review_dev(class_="form-control") }}</p>
+                        <p>{{ task_form.review_task(class_="form-control") }}</p>
+                        <p>{{ task_form.review_doc(class_="form-control") }}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Add</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+
+
+<p><strong>weeks:</strong></p>
+{% if weeks%}
+	{% for week in weeks %}
+		<p>{{ week.get_week_date() }}</p>
+	{% endfor %}
+{% endif %}
+
+
+<p><strong>goals:</strong></p>
+{% if goals %}
+	{% for goal in goals %}
+		<p>
+			{{ goal.week.get_week_date() }} - 
+			{{ goal }} 
+			[ PR: {{ goal.priority }} ] 
+			[ %: {{ goal.pct_done }} ] 
+			[ C/F: {{ goal.weeks_pushed }} ]
+		</p>
+	{% endfor %}
+{% endif %}
+
+<p><strong>tasks:</strong></p>
+{% if tasks %}
+	{% for task in tasks %}
+		<p>
+			{{ task.week.get_week_date() }} - 
+			{{ task }} 
+			[ prep_dev: {{ task.prep_dev }} ] 
+			[ prep_doc: {{ task.prep_doc }} ] 
+			[ review_dev: {{ task.review_dev }} ]
+			[ review_task: {{ task.review_task }} ]
+			[ review_doc: {{ task.review_doc }} ]
+		</p>
+	{% endfor %}
+{% endif %}
+
+
+<p><strong>interruptions:</strong></p>
+{% if interruptions %}
+	{% for interruption in interruptions %}
+		<p>
+			{{ interruption.week.get_week_date() }} - 
+			{{ interruption }} 
+			[ inter_date: {{ interruption.inter_date }} ] 
+			[ reason: {{ interruption.reason }} ]
+		</p>
+	{% endfor %}
+{% endif %}
+

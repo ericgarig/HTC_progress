@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- <link rel="icon" href="../../favicon.ico"> -->
+
+    <title>HTC Weekly Worksheet</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='css/custom.css?v=1.0.1') }}" rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">{% include 'name_week_selector.html' %}</div>
+      </div>
+      {% if week %}
+        <div class="row">
+           <div class="col">{% include 'task_prep.html' %}</div>
+           <div class="col">{% include 'goals.html' %}</div>
+        </div>
+        <div class="row">
+          <div class="col">{% include 'daily_review.html' %}</div>
+          <div class="col">{% include 'interruptions.html' %}</div>
+        </div>
+        <div class="row">
+          <div class="col">{% include 'task_review.html' %}</div>
+        </div>
+      {% endif %}
+    </div>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+
+    <script>window.jQuery || document.write('<script src=".{{ url_for('static', filename='js/vendor/jquery.min.js') }}"><\/script>')</script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap Date-Picker Plugin -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
+    <!-- Bootstrap datepicker -->
+    <script>
+        $(document).ready(function(){
+          var date_input=$('input[name="date"]'); //our date input has the name "date"
+          var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+          var options={
+            format: 'yyyy-mm-dd',
+            todayHighlight: true,
+            autoclose: true,
+            todayBtn: "linked",
+          };
+          date_input.datepicker(options);
+        })
+    </script>
+    
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+  </body>
+</html>
