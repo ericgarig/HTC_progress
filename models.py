@@ -76,7 +76,7 @@ class Goal(db.Model):
 
     def __init__(self, week_id=None,
                  goal=None,
-                 priority=None,
+                 priority=0,
                  pct_done=None,
                  weeks_pushed=None
                  ):
@@ -90,6 +90,10 @@ class Goal(db.Model):
     def __repr__(self):
         """Repr the object."""
         return '<Goal: {}>'.format(self.goal)
+
+    def done(self):
+        """Determine if the goal complete."""
+        return self.pct_done == 100
 
 
 class Interruption(db.Model):

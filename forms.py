@@ -9,17 +9,16 @@ from wtforms.validators import DataRequired, Optional
 class TaskForm(FlaskForm):
     """Form for entering tasks."""
 
-    prep_dev = StringField('Development', render_kw={
-                           "placeholder": "Add preparation development item"})
-    prep_doc = StringField('Documentation', render_kw={
-                           "placeholder":
-                           "Add preparation documentation item"})
-    review_dev = StringField('Development', render_kw={
-                             "placeholder": "Add review development item"})
-    review_task = StringField(
-        'Task', render_kw={"placeholder": "Add review project/task item"})
-    review_doc = StringField('Documentation', render_kw={
-                             "placeholder": "Add review documentation item"})
+    prep_dev = StringField('Development', render_kw={"placeholder":
+                           "New research/development to do"})
+    prep_doc = StringField('Documentation', render_kw={"placeholder":
+                           "New cleanup/documentation to do"})
+    review_dev = StringField('Development', render_kw={"placeholder":
+                             "Research/Development done"})
+    review_task = StringField('Task', render_kw={"placeholder":
+                              "Project/Task done"})
+    review_doc = StringField('Documentation', render_kw={"placeholder":
+                             "Cleanup/Documentation done"})
 
     def validate(self):
         """Overridden validate method."""
@@ -38,9 +37,11 @@ class GoalForm(FlaskForm):
     """Form for entering goals."""
 
     goal = StringField('Goal', validators=[DataRequired()], render_kw={
-                       "placeholder": "Add goal"})
-    priority = IntegerField('Priority', validators=[Optional()], render_kw={
-                            "placeholder": "Specify priority ( 1-5 )"})
+                       "placeholder": "Goal for the week"})
+    priority = IntegerField('Priority',
+                            validators=[DataRequired()],
+                            render_kw={
+                                "placeholder": "Specify priority ( 1-5 )"})
     pct_done = IntegerField('Pct Done', validators=[Optional()], render_kw={
                             "placeholder": "Percentage done ( 1-100 )"})
     weeks_pushed = IntegerField('Weeks Pushed',
@@ -55,9 +56,9 @@ class InterruptionForm(FlaskForm):
     date = DateField('Date', validators=[DataRequired()], render_kw={
                      "placeholder": "Specify a date"})
     person = StringField('Person', validators=[DataRequired()], render_kw={
-                         "placeholder": "Who interrupted you"})
+                         "placeholder": "Who interrupted/met you"})
     reason = StringField('Reason', validators=[DataRequired()], render_kw={
-                         "placeholder": "Why the interruption"})
+                         "placeholder": "Why the interruption/meeting"})
 
 
 class ReviewForm(FlaskForm):

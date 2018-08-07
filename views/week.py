@@ -1,5 +1,5 @@
 """View functions that deal with goals."""
-from app import app, db
+from app import db
 from datetime import date, datetime, time, timedelta
 from flask import Blueprint, redirect, url_for
 from models import Review, Week
@@ -8,8 +8,8 @@ from models import Review, Week
 vw = Blueprint('week', __name__)
 
 
-@app.route('/week/new')
-def week_new():
+@vw.route('/new')
+def new():
     """Route for adding a new week.
 
     Creates a week week for the Monday of this week.
@@ -29,4 +29,4 @@ def week_new():
         db.session.add(new_review)
     db.session.commit()
 
-    return redirect(url_for('worksheet', week_id=week_id))
+    return redirect(url_for('worksheet.worksheet', week_id=week_id))

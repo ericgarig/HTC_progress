@@ -1,10 +1,3 @@
-@media (min-width: 768px)
-custom.css:36
-.container {
-     max-width: 1000px; 
-}
-
-
 body {
     font-size: .8rem;
     line-height: 1.25;
@@ -26,4 +19,15 @@ body {
 
     /* Internet Explorer */
     filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+
+
+.row:hover div[class^="col-"]{
+  background-color: #dcdcdc;
+}
+
+@media (min-width: 768px)
+custom.css:36
+.container {
+     max-width: 1000px; 
 }

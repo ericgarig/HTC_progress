@@ -1,5 +1,4 @@
 """View function for the worksheet."""
-from app import app
 from flask import Blueprint, render_template
 from forms import GoalForm, InterruptionForm, ReviewForm, TaskForm
 from models import Goal, Interruption, Review, Tasks, Week
@@ -8,8 +7,8 @@ from models import Goal, Interruption, Review, Tasks, Week
 v_sheet = Blueprint('worksheet', __name__)
 
 
-@app.route('/')
-@app.route('/<week_id>')
+@v_sheet.route('/')
+@v_sheet.route('/<week_id>')
 def worksheet(week_id=None):
     """Main route of the one-page site."""
     week = ''

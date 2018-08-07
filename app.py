@@ -17,12 +17,12 @@ from models import *
 
 
 # blueprints
-app.register_blueprint(vd, url_prefix='')
-app.register_blueprint(vg, url_prefix='')
-app.register_blueprint(vi, url_prefix='')
-app.register_blueprint(vt, url_prefix='')
-app.register_blueprint(vw, url_prefix='')
-app.register_blueprint(v_debug, url_prefix='')
+app.register_blueprint(vd, url_prefix='/daily')
+app.register_blueprint(vg, url_prefix='/goal')
+app.register_blueprint(vi, url_prefix='/interruption')
+app.register_blueprint(vt, url_prefix='/task')
+app.register_blueprint(vw, url_prefix='/week')
+app.register_blueprint(v_debug, url_prefix='/debug')
 app.register_blueprint(v_sheet, url_prefix='')
 
 

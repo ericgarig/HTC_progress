@@ -7,17 +7,24 @@
 
 <div class="row">
     <div class="col-3"><strong>Work On</strong></div>
-    <div class="col"><strong>Max Time</strong></div>
+    <div class="col-1"><strong>Max Time</strong></div>
     <div class="col-7"><strong>Notes</strong></div>
 </div>
 
 <div class="row">
     <div class="col-3">Research / Development</div>
-    <div class="col">120 min</div>
-    <div class="col-7">
+    <div class="col-1">120 min</div>
+    <div class="col-8">
         {% for task in tasks %}
             {% if task.prep_dev %}
-            <p>{{ task.prep_dev }}</p>
+            <div class="row">
+                <div class="col-10">
+                    <p>{{ task.prep_dev }}</p>
+                </div>
+                <div class="col-1">
+                    <a href="{{ url_for('task.delete', task_id=task.id ) }}" class="btn btn-outline-danger btn-sm alert-link">x</a>
+                </div>
+            </div>
             {% endif %}
         {% endfor %}
     </div>
@@ -25,11 +32,18 @@
 
 <div class="row">
     <div class="col-3">Cleanup / Documentation</div>
-    <div class="col">120 min</div>
-    <div class="col-7">
+    <div class="col-1">120 min</div>
+    <div class="col-8">
         {% for task in tasks %}
             {% if task.prep_doc %}
-            <p>{{ task.prep_doc }}</p>
+            <div class="row">
+                <div class="col-10">
+                    <p>{{ task.prep_doc }}</p>
+                </div>
+                <div class="col-1">
+                    <a href="{{ url_for('task.delete', task_id=task.id ) }}" class="btn btn-outline-danger btn-sm alert-link">x</a>
+                </div>
+            </div>
             {% endif %}
         {% endfor %}
     </div>
@@ -41,15 +55,15 @@
 <div class="modal fade" id="weekly_prep_modal" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="{{ url_for('add_task', week_id=week.id ) }}" method="post" name="prep">
+            <form action="{{ url_for('task.add', week_id=week.id ) }}" method="post" name="prep">
                 <div class="modal-header">
                     <h6 class="modal-title">Add Weekly Preparation</h6>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
                         {{ task_form.hidden_tag() }}
-                        <p>{{ task_form.prep_dev(class_="form-control") }}</p>
-                        <p>{{ task_form.prep_doc(class_="form-control") }}</p>
+                        <p>{{ task_form.prep_dev(class_="form-control", autocomplete="off") }}</p>
+                        <p>{{ task_form.prep_doc(class_="form-control", autocomplete="off") }}</p>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">Add</button>

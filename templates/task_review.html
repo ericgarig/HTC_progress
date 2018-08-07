@@ -15,7 +15,14 @@
     <div class="col-9">
         {% for task in tasks %}
             {% if task.review_dev %}
-            <p>{{ task.review_dev }}</p>
+            <div class="row">
+                <div class="col-10">
+                    <p>{{ task.review_dev }}</p>
+                </div>
+                <div class="col-1">
+                    <a href="{{ url_for('task.delete', task_id=task.id ) }}" class="btn btn-outline-danger btn-sm alert-link">x</a>
+                </div>
+            </div>
             {% endif %}
         {% endfor %}
     </div>
@@ -26,7 +33,14 @@
     <div class="col-9">
         {% for task in tasks %}
             {% if task.review_task %}
-            <p>{{ task.review_task }}</p>
+            <div class="row">
+                <div class="col-10">
+                    <p>{{ task.review_task }}</p>
+                </div>
+                <div class="col-1">
+                    <a href="{{ url_for('task.delete', task_id=task.id ) }}" class="btn btn-outline-danger btn-sm alert-link">x</a>
+                </div>
+            </div>
             {% endif %}
         {% endfor %}
     </div>
@@ -37,7 +51,14 @@
     <div class="col-9">
         {% for task in tasks %}
             {% if task.review_doc %}
-            <p>{{ task.review_doc }}</p>
+            <div class="row">
+                <div class="col-10">
+                    <p>{{ task.review_doc }}</p>
+                </div>
+                <div class="col-1">
+                    <a href="{{ url_for('task.delete', week_id=task.week_id, task_id=task.id ) }}" class="btn btn-outline-danger btn-sm alert-link">x</a>
+                </div>
+            </div>
             {% endif %}
         {% endfor %}
     </div>
@@ -48,16 +69,16 @@
 <div class="modal fade" id="weekly_review_modal" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="{{ url_for('add_task', week_id=week.id ) }}" method="post" name="review">
+            <form action="{{ url_for('task.add', week_id=week.id ) }}" method="post" name="review">
                 <div class="modal-header">
                     <h6 class="modal-title">Add Weekly Review</h6>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
                         {{ task_form.hidden_tag() }}
-                        <p>{{ task_form.review_dev(class_="form-control") }}</p>
-                        <p>{{ task_form.review_task(class_="form-control") }}</p>
-                        <p>{{ task_form.review_doc(class_="form-control") }}</p>
+                        <p>{{ task_form.review_dev(class_="form-control", autocomplete="off") }}</p>
+                        <p>{{ task_form.review_task(class_="form-control", autocomplete="off") }}</p>
+                        <p>{{ task_form.review_doc(class_="form-control", autocomplete="off") }}</p>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">Add</button>

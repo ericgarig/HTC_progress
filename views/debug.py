@@ -1,5 +1,4 @@
 """Debug view of the app."""
-from app import app
 from flask import Blueprint, render_template
 from models import Goal, Interruption, Tasks, Week
 
@@ -7,8 +6,8 @@ from models import Goal, Interruption, Tasks, Week
 v_debug = Blueprint('debug', __name__)
 
 
-@app.route('/debug')
-@app.route('/debug/<week_id>')
+@v_debug.route('/debug')
+@v_debug.route('/debug/<week_id>')
 def debug_data(week_id=None):
     """Display data for given week."""
     goals = Goal.query.all()
